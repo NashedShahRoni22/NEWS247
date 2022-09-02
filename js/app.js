@@ -24,6 +24,10 @@ const newsDetailsLoad = (newsId) => {
 };
 // display category all news
 const displayAllNews = (allNews) => {
+  //spinner start
+  const spinner = document.getElementById('spinner');
+  spinner.classList.remove('d-none');
+  //display all news
   const newsItems = document.getElementById('news-items');
   newsItems.innerText = allNews.length;
   const newsContainer = document.getElementById("news-container");
@@ -53,7 +57,7 @@ const displayAllNews = (allNews) => {
                 </div>
                 <div>
                   <i class="fa-regular fa-eye"></i>
-                  <span>${news.total_view}</span>
+                  <span>${news.total_view?news.total_view:'<p class="text-danger">No Views</p>'}</span>
                 </div>
                 <div>
                 <i class="fa-solid fa-arrow-right"></i>
@@ -64,6 +68,8 @@ const displayAllNews = (allNews) => {
             </div>
         `;
     newsContainer.appendChild(newsdetailsDiv);
+    //spinner end
+    spinner.classList.add('d-none');
   });
 };
 
