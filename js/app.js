@@ -30,7 +30,11 @@ const newsDetailsLoad = (newsId) => {
 const displayAllNews = (allNews) => {
   //display all news
   const newsItems = document.getElementById("news-items");
-  newsItems.innerText = allNews.length;
+  if(allNews.length > 0){
+    newsItems.innerText = allNews.length;
+  }else{
+    newsItems.innerText = 'No'
+  }
   const newsContainer = document.getElementById("news-container");
   newsContainer.innerHTML = "";
   allNews.forEach((news) => {
