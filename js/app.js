@@ -26,9 +26,13 @@ const newsDetailsLoad = (newsId) => {
     .catch((error) => console.log(error));
 };
 
-//display all
+//display all news
 const displayAllNews = (allNews) => {
-  //display all news
+  //for sorting
+  allNews.sort((a, b) => {
+    return b.total_view - a.total_view;            
+  });
+  //display all news number
   const newsItems = document.getElementById("news-items");
   if(allNews.length > 0){
     newsItems.innerText = allNews.length;
@@ -99,6 +103,7 @@ const displayAllNews = (allNews) => {
   spinnerDisplay(false);
 };
 
+//news modal load
 const newsFullDetailsLoad = (detailsId) => {
   const url = `https://openapi.programming-hero.com/api/news/${detailsId}`;
   fetch(url)
@@ -106,14 +111,18 @@ const newsFullDetailsLoad = (detailsId) => {
     .then((data) => displayNewsDetails(data.data[0]))
     .catch((error) => console.log(error));
 };
+//news modal display
 const displayNewsDetails = (newsDetails) => {
   // console.log(newsDetails);
   const newsDetailsModal = document.getElementById("news-details-modal");
   newsDetailsModal.innerHTML = `
-  <img src="${newsDetails.image_url}" alt="" class="img-fluid">
-  <h5 class="my-3">${newsDetails.title}</h5>
+  <img src="${newsDetails.image_url}" alt="" class="img-fluid mb-3">
+  <strong class="my-3 fs-5">${newsDetails.title}</strong>
   <hr>
   <p>${newsDetails.details}</p>
+  <strong>${newsDetails.author.name}</strong>
+  <p class="text-primary">${newsDetails.author.published_date}</p>
+  <p class="text-primary">Ratings:${newsDetails.rating.number}</p>
   `;
 };
 
@@ -126,6 +135,7 @@ const spinnerDisplay = (isLoading) => {
     spinner.classList.add("d-none");
   }
 };
+
 //globally load
 newsDetailsLoad(08);
 loadCategories();
