@@ -5,10 +5,10 @@
 #start-nav-links a{
     text-decoration: none;
     font-weight: 600;
-    color: black;
 }
 .active{
-    border-bottom: 2px solid blue;
+    border-bottom: 2px solid black;
+    color: black;
 }
 .end-nav ul li{
     cursor: pointer;
