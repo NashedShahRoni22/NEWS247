@@ -17,3 +17,7 @@
     height: 40px;
     width: 40px;
 }
+.end-nav ul li:hover{
+    border-bottom: 1px solid blue;
+    color: blue;
+}
