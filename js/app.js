@@ -11,7 +11,7 @@ const displayCategories = (categories) => {
   categories.forEach((category) => {
     const li = document.createElement("li");
     li.innerHTML = `
-        <li onclick="newsDetailsLoad(${category.category_id})">${category.category_name}</li>
+        <li onclick="newsDetailsLoad(${category.category_id})" class="p-3">${category.category_name}</li>
         `;
     categoryContainer.appendChild(li);
   });
@@ -34,10 +34,6 @@ const displayAllNews = (allNews) => {
   const newsContainer = document.getElementById("news-container");
   newsContainer.innerHTML = "";
   allNews.forEach((news) => {
-
-    const ratingArray =[];
-    ratingArray.push(news.total_view);
-    console.log(ratingArray);
     const newsdetailsDiv = document.createElement("div");
     newsdetailsDiv.innerHTML = `
             <div class="card mb-3">
@@ -49,11 +45,11 @@ const displayAllNews = (allNews) => {
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">
-                      <h5 class="card-title">${news.title}</h5>
+                      <strong class="card-title fs-5">${news.title}</strong>
                       <p class="card-text">${news.details.slice(
                         0,
                         200
-                      )}...<span class="text-primary">Read More</span></p>
+                      )}<span class="text-primary">...Read More</span></p>
                     </div>
                     <div class="d-flex align-items-center justify-content-between px-3 py-3">
                 <div class="d-flex align-items-center gap-3">
@@ -112,6 +108,7 @@ const displayNewsDetails = (newsDetails) => {
   newsDetailsModal.innerHTML = `
   <img src="${newsDetails.image_url}" alt="" class="img-fluid">
   <h5 class="my-3">${newsDetails.title}</h5>
+  <hr>
   <p>${newsDetails.details}</p>
   `;
 };

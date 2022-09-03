@@ -1,3 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+*{
+    font-family: 'Nunito', sans-serif;
+}
+.fav-ico{
+    height: 50px;
+    width: 50px;
+}
+.logo:hover{
+    cursor: pointer;
+    background-color: blue;
+    color: white;
+}
 #start-nav-img{
     height: 30px;
     width: 30px;
@@ -10,14 +23,12 @@
     border-bottom: 2px solid black;
     color: black;
 }
-.end-nav ul li{
-    cursor: pointer;
-}
 .img-left img{
     height: 40px;
     width: 40px;
 }
-.end-nav ul li:hover{
+.nav-list ul li:hover{
     border-bottom: 1px solid blue;
     color: blue;
+    cursor: pointer;
 }
