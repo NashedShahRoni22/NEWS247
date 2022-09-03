@@ -22,11 +22,10 @@ const newsDetailsLoad = (newsId) => {
     .then((res) => res.json())
     .then((data) => displayAllNews(data.data));
 };
+//spinner
+const spinner = document.getElementById('spinner');
 // display category all news
 const displayAllNews = (allNews) => {
-  //spinner start
-  const spinner = document.getElementById('spinner');
-  spinner.classList.remove('d-none');
   //display all news
   const newsItems = document.getElementById('news-items');
   newsItems.innerText = allNews.length;
@@ -60,7 +59,10 @@ const displayAllNews = (allNews) => {
                   <span>${news.total_view?news.total_view:'<p class="text-danger">No Views</p>'}</span>
                 </div>
                 <div>
-                <i class="fa-solid fa-arrow-right"></i>
+                <button data-bs-toggle="modal"
+                data-bs-target="#exampleModal" class="bg-primary rounded-circle border-0" onclick="newsFullDetailsLoad('${news._id}')">
+                <i class="fa-solid fa-arrow-right text-white"></i>
+                </button>
                 </div>
               </div>
                   </div>
@@ -68,11 +70,26 @@ const displayAllNews = (allNews) => {
             </div>
         `;
     newsContainer.appendChild(newsdetailsDiv);
-    //spinner end
-    spinner.classList.add('d-none');
   });
 };
 
+const newsFullDetailsLoad =(detailsId)=>{
+  const url = `https://openapi.programming-hero.com/api/news/${detailsId}`
+  fetch(url)
+  .then(res => res.json())
+  .then(data => displayNewsDetails(data.data[0]))
+}
+const displayNewsDetails=(newsDetails)=>{
+  // console.log(newsDetails);
+  const newsDetailsModal = document.getElementById('news-details-modal');
+  newsDetailsModal.innerHTML=
+  `
+  <img src="${newsDetails.image_url}" alt="" class="img-fluid">
+  <h5>${newsDetails.title}</h5>
+  <p>${newsDetails.details}</p>
+  `
+  ;
+}
 //globally load
 newsDetailsLoad(08);
 loadCategories();
